@@ -2,6 +2,31 @@
 
 # Deep Image Analogy
 
+Fork for Linux support:
+
+```sh
+cd src/
+
+protoc caffe/proto/caffe.proto --cpp_out=../include/
+
+cd ..
+
+sed 's/# USE_CUDNN/USE_CUDNN/' Makefile.config.example > Makefile.config
+
+make -j${nproc}
+
+export p="`pwd`/windows/deep_image_analogy"
+
+wget -c http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_layers.caffemodel \
+     -P $p/models/vgg19
+
+bash compile_deep_image_analogy.sh
+
+export LD_LIBRARY_PATH="`pwd`/build/lib"
+
+./deep_image_analogy $p/models/ $p/demo/content.png $p/demo/style.png $p/demo/output/ 0 0.5 2 0
+```
+
 The major contributors of this repository include [Jing Liao](https://liaojing.github.io/html/index.html), [Yuan Yao](http://yuanyao.info/), [Lu Yuan](http://www.lyuan.org/), [Gang Hua](http://www.ganghua.org/) and [Sing Bing Kang](http://www.singbingkang.com/publications/) at Microsoft Research.
 
 ## Introduction
