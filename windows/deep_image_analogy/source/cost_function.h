@@ -36,8 +36,10 @@
 #ifdef LBFGS_CPU_float_PRECISION
 	// 'real' is taken...
 	typedef float floatfloat;
+        typedef double floatdouble;
 #else
 	typedef float  floatfloat;
+        typedef float  floatdouble;
 #endif
 
 // GPU based cost functions can directly inherit from this class
