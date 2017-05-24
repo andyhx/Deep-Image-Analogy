@@ -114,7 +114,9 @@ void Classifier::Draw(float* data, Dim dim,string filename)
 		const float* begin = ptr + (r*cols + c)*height*width;
 		const float* end = begin + height*width;
 
-		Square_draw(std::vector<float>(begin, end), img(cv::Rect(c*(width + 1), r*(height + 1), width, height)));
+                std::vector<float> vec = std::vector<float>(begin, end);
+ 		cv::Mat image = img(cv::Rect(c*(width + 1), r*(height + 1), width, height)); 
+		Square_draw(vec, image);
 
 	}
 
