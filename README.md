@@ -13,7 +13,7 @@ cd ..
 
 sed 's/# USE_CUDNN/USE_CUDNN/' Makefile.config.example > Makefile.config
 
-make -j${nproc}
+make -j$(($(cat /proc/cpuinfo | grep processor | wc -l) - 1))
 
 export p="`pwd`/windows/deep_image_analogy"
 
